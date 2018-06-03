@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <m-header></m-header>
-    hello word
+    <tab></tab>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import MHeader from 'components/header/MHeader'
+import Tab from 'components/tab/Tab'
 export default {
   name: 'App',
   components: {
-    MHeader
+    MHeader,
+    Tab
   }
 }
 </script>
