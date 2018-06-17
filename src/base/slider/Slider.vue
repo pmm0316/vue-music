@@ -69,8 +69,7 @@ export default {
         snap: true,
         snapLoop: this.loop,
         snapThreshold: 0.3,
-        snapSpeed: 400,
-        click: true
+        snapSpeed: 400
       })
       /**
        * 监听轮播图滑动结束时间
@@ -80,6 +79,11 @@ export default {
         let pageIndex = this.scroll.getCurrentPage().pageX
         console.log(pageIndex)
         this.currentPageIndex = pageIndex
+        // 点击图片滑动时，清除定时器，重新启动
+        if (this.autoPlay) {
+          clearInterval(this.timer)
+          this._initAutoPlay()
+        }
       })
     },
     _initDots () {
@@ -104,6 +108,16 @@ export default {
         this._initAutoPlay()
       }
     }, 18)
+    window.addEventListener('resize', () => {
+      if (!this.scroll) {
+        return
+      }
+      this._setSliderWidth()
+      this.scroll.refresh()
+    })
+  },
+  destroyed () {
+    clearInterval(this.timer)
   }
 }
 </script>

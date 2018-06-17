@@ -6,7 +6,13 @@ import { fetch } from './fetch'
 
 export function getRecommend () {
   return fetch({
-    url: '/api/recommend.json',
+    url: '/api/recommend/recommend.json',
+    method: 'get'
+  })
+}
+export function getDiscList () {
+  return fetch({
+    url: '/api/recommend/discList.json',
     method: 'get'
   })
 }
