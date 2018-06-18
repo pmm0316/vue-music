@@ -40,10 +40,7 @@
 </template>
 
 <script>
-import {
-  getRecommend,
-  getDiscList
-} from 'api/recommend'
+import {getRecommend, getDiscList} from 'api/request/recommend'
 import Scroll from 'base/scroll/Scroll'
 import { ERR_OK } from 'api/config'
 import Slider from 'base/slider/Slider'
