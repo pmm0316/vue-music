@@ -92,6 +92,7 @@ export default {
 
 <style scoped lang='stylus' type='text/stylus'>
   @import '~stylus/variable.styl'
+  @import '~stylus/mixin.styl'
   .recommend
     display flex
     width 100%
@@ -134,8 +135,5 @@ export default {
             .desc
               color $color-text-d
     .loading-container
-      position absolute
-      top 50%
-      width 100%
-      transform translateY(-50%)
+      loading-style()
 </style>
