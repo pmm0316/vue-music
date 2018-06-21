@@ -5,8 +5,30 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+import {getSingerDetail} from 'api/request/singer'
+// import {ERR_OK} from 'api/config'
 export default {
-  name: 'SingerDetail'
+  name: 'SingerDetail',
+  computed: {
+    ...mapGetters(['singer'])
+  },
+  methods: {
+    _getSingerDetail () {
+      if (!this.singer.id) {
+        this.$router.push('/singer')
+        return
+      }
+      getSingerDetail(this.singer.id).then(({data}) => {
+        console.log(this.singer.id)
+        console.log(data.data)
+      })
+    }
+  },
+  created () {
+    console.log(this.singer)
+    this._getSingerDetail()
+  }
 }
 </script>
 

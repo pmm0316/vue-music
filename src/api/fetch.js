@@ -9,7 +9,9 @@ import { requestUrl } from './requestUrl'
 export function fetch (options) {
   return new Promise((resolve, reject) => {
     const instance = axios.create({
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json'
+      },
       timeout: 30000
     })
     // 给每次的请求添加时间戳

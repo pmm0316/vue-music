@@ -6,7 +6,6 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
@@ -15,6 +14,13 @@ module.exports = {
         target: 'http://localhost:8081',
         pathRewrite: {
           '^/api': '/static/mock'
+        }
+      },
+      '/qq' : {
+        target: 'https://c.y.qq.com/v8/fcg-bin',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/qq': ''
         }
       }
     },
