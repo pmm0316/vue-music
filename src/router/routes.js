@@ -6,6 +6,7 @@ import Rank from 'components/rank/Rank'
 import Recommend from 'components/recommend/Recommend'
 import Search from 'components/search/Search'
 import Singer from 'components/singer/Singer'
+import SingerDetail from 'components/singer-detail/SingerDetail'
 
 export default [
   {
@@ -30,6 +31,12 @@ export default [
   {
     path: '/singer',
     name: 'Singer',
-    component: Singer
+    component: Singer,
+    children: [
+      {
+        path: ':id',
+        component: SingerDetail
+      }
+    ]
   }
 ]

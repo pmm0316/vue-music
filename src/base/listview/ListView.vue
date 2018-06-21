@@ -11,6 +11,7 @@
           <h2 class="list-group-title">{{group.title}}</h2>
           <ul>
             <li v-for="item in group.items"
+                @click="selectItem(item)"
                 class="list-group-item"
                 :key="item.id">
               <img class="avatar" v-lazy="item.avatar">
@@ -31,7 +32,7 @@
               :key="index">{{item}}</li>
         </ul>
       </div>
-      <div class="list-fixed" v-show="fixedTitle">
+      <div class="list-fixed" v-show="fixedTitle" ref="fixed">
         <h1 class="fixed-title">{{fixedTitle}}</h1>
       </div>
       <div class="loading-container" v-show="!data.length">
@@ -79,6 +80,9 @@ export default {
     Loading
   },
   methods: {
+    selectItem (item) {
+      this.$emit('select', item)
+    },
     onShortcutTouchStart (e) {
       let anchorIndex = getData(e.target, 'index')
       let firstTouch = e.touches[0]
@@ -147,7 +151,7 @@ export default {
       this.currentIndex = listHeight.length - 2
     },
     diff (newVal) {
-      let fixedTop = (newVal > 0 && TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
+      let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
       if (this.fixedTop === fixedTop) {
         return
       }
