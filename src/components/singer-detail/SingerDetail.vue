@@ -7,9 +7,16 @@
 <script>
 import {mapGetters} from 'vuex'
 import {getSingerDetail} from 'api/request/singer'
-// import {ERR_OK} from 'api/config'
+import {ERR_OK} from 'api/config'
+import {createSong} from 'common/js/song'
+
 export default {
   name: 'SingerDetail',
+  data () {
+    return {
+      songs: []
+    }
+  },
   computed: {
     ...mapGetters(['singer'])
   },
@@ -20,9 +27,21 @@ export default {
         return
       }
       getSingerDetail(this.singer.id).then(({data}) => {
-        console.log(this.singer.id)
-        console.log(data.data)
+        if (data.code === ERR_OK) {
+          this.songs = this._normalizeSongs(data.data.list)
+          console.log(this.songs)
+        }
       })
+    },
+    _normalizeSongs (list) {
+      let ret = []
+      list.forEach((item) => {
+        let {musicData} = item
+        if (musicData.songid && musicData.albummid) {
+          ret.push(createSong(musicData))
+        }
+      })
+      return ret
     }
   },
   created () {
