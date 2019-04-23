@@ -1,5 +1,5 @@
 <template>
-    <div>Rank</div>
+    <div>Rank page</div>
 </template>
 
 <script>
